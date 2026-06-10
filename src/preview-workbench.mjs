@@ -1,0 +1,246 @@
+import { sortColors, withAlpha } from "./utils.mjs";
+
+/** @typedef {import('./directions/types.mjs').DirectionSpec} DirectionSpec */
+
+/**
+ * @param {DirectionSpec} direction
+ * @returns {Record<string, string>}
+ */
+export function buildPreviewWorkbench(direction) {
+  const { surfaces: s, accents: a } = direction;
+  const brackets = direction.bracketColors ?? [];
+
+  /** @type {Record<string, string>} */
+  const colors = {
+    focusBorder: a.focus,
+    foreground: s.fg1,
+    descriptionForeground: s.fg3,
+    errorForeground: a.error,
+    "icon.foreground": s.fg2,
+    "sash.hoverBorder": a.focus,
+    "window.activeBorder": a.focus,
+    "window.inactiveBorder": s.border0,
+
+    "titleBar.activeBackground": s.bg0,
+    "titleBar.activeForeground": s.fg0,
+    "titleBar.inactiveBackground": s.bg1,
+    "titleBar.inactiveForeground": s.fg3,
+    "titleBar.border": s.border0,
+
+    "activityBar.background": s.bg0,
+    "activityBar.foreground": a.activityBar,
+    "activityBar.inactiveForeground": s.fg3,
+    "activityBar.border": s.border0,
+    "activityBar.activeBorder": a.focus,
+    "activityBarBadge.background": a.focus,
+    "activityBarBadge.foreground": s.bg0,
+
+    "sideBar.background": s.bg1,
+    "sideBar.foreground": s.fg2,
+    "sideBar.border": s.border0,
+    "sideBarTitle.foreground": s.fg0,
+    "sideBarSectionHeader.background": s.bg2,
+    "sideBarSectionHeader.foreground": s.fg1,
+    "sideBarSectionHeader.border": s.border1,
+
+    "list.activeSelectionBackground": a.listActive,
+    "list.activeSelectionForeground": a.listActiveFg,
+    "list.inactiveSelectionBackground": s.bg3,
+    "list.inactiveSelectionForeground": s.fg1,
+    "list.hoverBackground": s.bg3,
+    "list.hoverForeground": s.fg0,
+    "list.focusBackground": a.listActive,
+    "list.focusForeground": a.listActiveFg,
+    "list.focusOutline": withAlpha(a.focus, 0.5),
+    "list.focusHighlightForeground": withAlpha(a.focus, 0.75),
+    "list.highlightForeground": a.focus,
+    "list.errorForeground": a.error,
+    "list.warningForeground": a.warning,
+    "list.filterMatchBackground": withAlpha(a.findMatch, 0.35),
+    "list.deemphasizedForeground": s.fg3,
+
+    "tree.indentGuidesStroke": s.border1,
+    "tree.inactiveIndentGuidesStroke": s.border0,
+    "tree.tableColumnsBorder": s.border1,
+    "tree.tableOddRowsBackground": withAlpha(s.bg2, 0.5),
+
+    "editor.background": s.bg0,
+    "editor.foreground": s.fg1,
+    "editorLineNumber.foreground": s.fg3,
+    "editorLineNumber.activeForeground": a.cursor,
+    "editorCursor.foreground": a.cursor,
+    "editor.selectionBackground": a.selection,
+    "editor.inactiveSelectionBackground": withAlpha(s.bg3, 0.8),
+    "editor.selectionHighlightBackground": withAlpha(a.focus, 0.2),
+    "editor.wordHighlightBackground": withAlpha(a.focus, 0.15),
+    "editor.wordHighlightStrongBackground": withAlpha(a.focus, 0.25),
+    "editor.findMatchBackground": withAlpha(a.findMatch, 0.4),
+    "editor.findMatchHighlightBackground": withAlpha(a.focus, 0.2),
+    "editor.lineHighlightBackground": withAlpha(s.bg1, 0.6),
+    "editor.lineHighlightBorder": s.border0,
+    "editorWhitespace.foreground": withAlpha(s.fg3, 0.35),
+    "editorIndentGuide.background1": s.border0,
+    "editorIndentGuide.activeBackground1": withAlpha(a.focus, 0.45),
+    "editorRuler.foreground": s.border0,
+    "editorBracketMatch.background": withAlpha(a.focus, 0.12),
+    "editorBracketMatch.border": a.focus,
+    "editorGutter.background": s.bg0,
+    "editorGutter.modifiedBackground": a.modified,
+    "editorGutter.addedBackground": a.added,
+    "editorGutter.deletedBackground": a.deleted,
+    "editorError.foreground": a.error,
+    "editorWarning.foreground": a.warning,
+    "editorInfo.foreground": a.focus,
+    "editorGhostText.foreground": withAlpha(s.fg3, 0.65),
+    "editorInlayHint.foreground": s.fg3,
+    "editorInlayHint.background": withAlpha(s.bg2, 0.9),
+    "editorSuggestWidget.background": s.bg2,
+    "editorSuggestWidget.border": s.border1,
+    "editorSuggestWidget.foreground": s.fg1,
+    "editorSuggestWidget.highlightForeground": a.focus,
+    "editorSuggestWidget.selectedBackground": a.listActive,
+    "editorSuggestWidget.selectedForeground": a.listActiveFg,
+    "editorHoverWidget.background": s.bg2,
+    "editorHoverWidget.border": s.border1,
+    "editorWidget.background": s.bg2,
+    "editorWidget.border": s.border1,
+
+    "editorGroupHeader.tabsBackground": s.bg0,
+    "editorGroupHeader.tabsBorder": s.border0,
+    "tab.activeBackground": s.bg1,
+    "tab.activeForeground": s.fg0,
+    "tab.activeBorderTop": a.tabActiveTop,
+    "tab.inactiveBackground": s.bg0,
+    "tab.inactiveForeground": s.fg3,
+    "tab.hoverBackground": s.bg2,
+    "tab.border": s.border0,
+    "breadcrumb.foreground": s.fg3,
+    "breadcrumb.background": s.bg1,
+    "breadcrumb.focusForeground": s.fg0,
+    "breadcrumb.activeSelectionForeground": a.focus,
+
+    "panel.background": s.bg2,
+    "panel.border": s.border0,
+    "panelTitle.activeForeground": s.fg0,
+    "panelTitle.inactiveForeground": s.fg3,
+    "panelTitle.activeBorder": a.focus,
+
+    "statusBar.background": a.statusBar,
+    "statusBar.foreground": a.statusBarFg,
+    "statusBar.border": s.border0,
+    "statusBar.debuggingBackground": a.warning,
+    "statusBar.debuggingForeground": s.bg0,
+    "statusBar.noFolderBackground": s.bg2,
+    "statusBar.noFolderForeground": s.fg1,
+    "statusBarItem.hoverBackground": withAlpha(a.focus, 0.2),
+    "statusBarItem.remoteBackground": a.focus,
+    "statusBarItem.remoteForeground": s.bg0,
+
+    "terminal.background": s.bg0,
+    "terminal.foreground": s.fg1,
+    "terminal.border": s.border0,
+    "terminalCursor.foreground": a.cursor,
+    "terminal.selectionBackground": a.selection,
+    "terminal.ansiBlack": s.bg0,
+    "terminal.ansiRed": a.error,
+    "terminal.ansiGreen": a.success,
+    "terminal.ansiYellow": a.warning,
+    "terminal.ansiBlue": a.focus,
+    "terminal.ansiMagenta": a.modified,
+    "terminal.ansiCyan": a.focus,
+    "terminal.ansiWhite": s.fg1,
+    "terminal.ansiBrightBlack": s.fg3,
+    "terminal.ansiBrightRed": a.error,
+    "terminal.ansiBrightGreen": a.success,
+    "terminal.ansiBrightYellow": a.warning,
+    "terminal.ansiBrightBlue": a.focus,
+    "terminal.ansiBrightMagenta": a.modified,
+    "terminal.ansiBrightCyan": a.focus,
+    "terminal.ansiBrightWhite": s.fg0,
+
+    "input.background": s.bg2,
+    "input.foreground": s.fg0,
+    "input.border": s.border1,
+    "input.placeholderForeground": s.fg3,
+    "inputOption.activeBorder": a.focus,
+    "inputValidation.errorBackground": withAlpha(a.error, 0.15),
+    "inputValidation.errorBorder": a.error,
+    "inputValidation.warningBackground": withAlpha(a.warning, 0.15),
+    "inputValidation.warningBorder": a.warning,
+
+    "button.background": a.focus,
+    "button.foreground": s.bg0,
+    "button.hoverBackground": withAlpha(a.focus, 0.85),
+    "button.secondaryBackground": s.bg3,
+    "button.secondaryForeground": s.fg1,
+    "dropdown.background": s.bg2,
+    "dropdown.foreground": s.fg0,
+    "dropdown.border": s.border1,
+
+    "badge.background": s.bg3,
+    "badge.foreground": s.fg1,
+    "progressBar.background": a.focus,
+
+    "scrollbarSlider.background": withAlpha(s.bg3, 0.7),
+    "scrollbarSlider.hoverBackground": withAlpha(s.border1, 0.8),
+    "scrollbarSlider.activeBackground": withAlpha(a.focus, 0.6),
+
+    "peekView.border": a.focus,
+    "peekViewEditor.background": s.bg1,
+    "peekViewResult.background": s.bg0,
+    "peekViewTitle.background": s.bg2,
+
+    "diffEditor.insertedTextBackground": withAlpha(a.added, 0.15),
+    "diffEditor.removedTextBackground": withAlpha(a.deleted, 0.15),
+
+    "quickInput.background": s.bg2,
+    "quickInput.foreground": s.fg1,
+    "quickInputList.focusBackground": a.listActive,
+    "quickInputList.focusForeground": a.listActiveFg,
+    "quickInputList.focusIconForeground": withAlpha(a.focus, 0.75),
+
+    "menu.background": s.bg2,
+    "menu.foreground": s.fg1,
+    "menu.selectionBackground": a.listActive,
+    "menu.selectionForeground": a.listActiveFg,
+
+    textLink: a.focus,
+    "textLink.activeForeground": a.focus,
+    textPreformatForeground: s.fg2,
+    textPreformatBackground: s.bg3,
+    textCodeBlockBackground: s.bg2,
+
+    "gitDecoration.addedResourceForeground": a.added,
+    "gitDecoration.modifiedResourceForeground": a.modified,
+    "gitDecoration.deletedResourceForeground": a.deleted,
+
+    "keybindingLabel.background": s.bg3,
+    "keybindingLabel.foreground": s.fg0,
+    "keybindingLabel.border": s.border1,
+  };
+
+  for (let i = 0; i < 6; i += 1) {
+    if (brackets[i]) {
+      colors[`editorBracketHighlight.foreground${i + 1}`] = brackets[i];
+    }
+  }
+
+  return sortColors({ ...colors, ...direction.workbenchOverrides });
+}
+
+/** Keys every preview theme must define. */
+export const PREVIEW_COLOR_KEYS = Object.freeze([
+  "focusBorder",
+  "foreground",
+  "editor.background",
+  "editor.foreground",
+  "sideBar.background",
+  "list.activeSelectionBackground",
+  "list.activeSelectionForeground",
+  "statusBar.background",
+  "statusBar.foreground",
+  "tab.activeBorderTop",
+  "terminal.background",
+  "input.background",
+  "input.foreground",
+]);

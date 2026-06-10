@@ -62,6 +62,9 @@ web_modules/
 # Output of 'npm pack'
 *.tgz
 
+# VS Code extension packages
+*.vsix
+
 # Yarn Integrity file
 .yarn-integrity
 
@@ -141,3 +144,9 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+graphify-out/
+Release.md
+pat
+*.vsix
+dist
+pat-open-vsx
