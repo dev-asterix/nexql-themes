@@ -4,7 +4,6 @@ on:
   push:
     tags:
       - 'v*'
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,11 +13,13 @@ env:
 
 jobs:
   publish:
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,13 +28,16 @@ jobs:
 
       - name: Verify tag matches package.json
         id: version
+        env:
+          TAG_NAME: ${{ github.ref_name }}
         run: |
           set -euo pipefail
 
-          TAG_VERSION=${GITHUB_REF_NAME#v}
+          TAG_VERSION=${TAG_NAME#v}
           PKG_VERSION=$(node -p "require('./package.json').version")
           EXTENSION_NAME=$(node -p "require('./package.json').name")
 
+          echo "Tag: $TAG_NAME"
           echo "Tag version: $TAG_VERSION"
           echo "Package.json version: $PKG_VERSION"
 
