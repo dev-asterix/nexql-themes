@@ -27,8 +27,8 @@
     "nexql"
   ],
   "galleryBanner": {
-    "color": "##35225e",
-    "theme": "dark"
+    "color": "#f8f7f7",
+    "theme": "light"
   },
   "extensionKind": [
     "workspace",
@@ -96,6 +96,7 @@
   "scripts": {
     "generate": "node scripts/generate-previews.mjs",
     "validate": "node scripts/validate-themes.mjs",
+    "build:site": "node scripts/build-site.mjs",
     "compile": "npm run generate && npm run validate",
     "vscode:prepublish": "npm run compile",
     "watch": "npm run compile"
