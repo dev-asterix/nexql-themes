@@ -20,4 +20,7 @@ export const STATIC_THEMES = [
   { label: "NexQL Postgres Homage Day", uiTheme: "vs", filename: "nexql-postgres-homage-day-color-theme.json" },
   { label: "NexQL Sage Day", uiTheme: "vs", filename: "nexql-sage-day-color-theme.json" },
   { label: "NexQL Sage at Night", uiTheme: "vs-dark", filename: "nexql-sage-at-night-color-theme.json" },
+  { label: "NexQL Sentinel Prod", uiTheme: "vs-dark", filename: "nexql-sentinel-prod-color-theme.json" },
+  { label: "NexQL Sentinel Staging", uiTheme: "vs-dark", filename: "nexql-sentinel-staging-color-theme.json" },
+  { label: "NexQL Sentinel Dev", uiTheme: "vs-dark", filename: "nexql-sentinel-dev-color-theme.json" },
 ];
