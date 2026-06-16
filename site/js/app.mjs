@@ -58,6 +58,14 @@ const FAMILY_PAIRS = [
   ["Claudy", "claudy-day", "claudy-night"],
   ["Sage", "sage-day", "sage-at-night"],
   ["Postgres", "postgres-homage-day", "postgres-homage-dark"],
+  ["Ember", "ember-day", "ember-dark"],
+  ["Drift", "drift-day", "drift-dark"],
+  ["Sentinel Prod", "sentinel-prod-light", "sentinel-prod"],
+  ["Sentinel Staging", "sentinel-staging-light", "sentinel-staging"],
+  ["Sentinel Dev", "sentinel-dev-light", "sentinel-dev"],
+  ["Contrast (Accessibility)", "contrast-light", "contrast-dark"],
+  ["Circadian (Peak/Midnight)", "high-noon", "midnight-oil"],
+  ["Security (Audit/Redacted)", "audit-trail", "redacted"],
 ];
 
 /** @type {HTMLElement | null} */
