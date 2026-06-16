@@ -105,6 +105,131 @@
         "label": "NexQL Sentinel Dev",
         "uiTheme": "vs-dark",
         "path": "./themes/nexql-sentinel-dev-color-theme.json"
+      },
+      {
+        "label": "NexQL Contrast Dark",
+        "uiTheme": "hc-black",
+        "path": "./themes/nexql-contrast-dark-color-theme.json"
+      },
+      {
+        "label": "NexQL Contrast Light",
+        "uiTheme": "hc-light",
+        "path": "./themes/nexql-contrast-light-color-theme.json"
+      },
+      {
+        "label": "NexQL Ember Day",
+        "uiTheme": "vs",
+        "path": "./themes/nexql-ember-day-color-theme.json"
+      },
+      {
+        "label": "NexQL Drift Day",
+        "uiTheme": "vs",
+        "path": "./themes/nexql-drift-day-color-theme.json"
+      },
+      {
+        "label": "NexQL Paper White",
+        "uiTheme": "vs",
+        "path": "./themes/nexql-paper-white-color-theme.json"
+      },
+      {
+        "label": "NexQL Sentinel Prod Light",
+        "uiTheme": "vs",
+        "path": "./themes/nexql-sentinel-prod-light-color-theme.json"
+      },
+      {
+        "label": "NexQL Sentinel Staging Light",
+        "uiTheme": "vs",
+        "path": "./themes/nexql-sentinel-staging-light-color-theme.json"
+      },
+      {
+        "label": "NexQL Sentinel Dev Light",
+        "uiTheme": "vs",
+        "path": "./themes/nexql-sentinel-dev-light-color-theme.json"
+      },
+      {
+        "label": "NexQL First Light",
+        "uiTheme": "vs",
+        "path": "./themes/nexql-first-light-color-theme.json"
+      },
+      {
+        "label": "NexQL High Noon",
+        "uiTheme": "vs",
+        "path": "./themes/nexql-high-noon-color-theme.json"
+      },
+      {
+        "label": "NexQL Golden Hour",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-golden-hour-color-theme.json"
+      },
+      {
+        "label": "NexQL Midnight Oil",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-midnight-oil-color-theme.json"
+      },
+      {
+        "label": "NexQL Focus",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-focus-color-theme.json"
+      },
+      {
+        "label": "NexQL Spectrum",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-spectrum-color-theme.json"
+      },
+      {
+        "label": "NexQL Zen",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-zen-color-theme.json"
+      },
+      {
+        "label": "NexQL Rustacean",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-rustacean-color-theme.json"
+      },
+      {
+        "label": "NexQL Pythonic",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-pythonic-color-theme.json"
+      },
+      {
+        "label": "NexQL Webflow",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-webflow-color-theme.json"
+      },
+      {
+        "label": "NexQL Data Pipeline",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-data-pipeline-color-theme.json"
+      },
+      {
+        "label": "NexQL Redacted",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-redacted-color-theme.json"
+      },
+      {
+        "label": "NexQL Audit Trail",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-audit-trail-color-theme.json"
+      },
+      {
+        "label": "NexQL Aurora",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-aurora-color-theme.json"
+      },
+      {
+        "label": "NexQL Solstice",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-solstice-color-theme.json"
+      },
+      {
+        "label": "NexQL Harvest",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nexql-harvest-color-theme.json"
+      },
+      {
+        "label": "NexQL Bloom",
+        "uiTheme": "vs",
+        "path": "./themes/nexql-bloom-color-theme.json"
       }
     ]
   },

@@ -46,6 +46,16 @@
  * @property {string} number
  * @property {string} operator
  * @property {string} constant
+ * @property {string} [decorator]
+ * @property {string} [templateLiteral]
+ * @property {string} [escape]
+ * @property {string} [regex]
+ * @property {string} [preprocessor]
+ * @property {string} [lifetime]
+ * @property {string} [docTag]
+ * @property {string} [cssSelector]
+ * @property {string} [yamlKey]
+ * @property {string} [selfKeyword]
  */
 
 /**
@@ -53,6 +63,8 @@
  * @property {string} id
  * @property {string} label
  * @property {string} filename
+ * @property {"vs" | "vs-dark" | "hc-black" | "hc-light"} uiTheme
+ * @property {"light" | "dark" | "hc"} type
  * @property {DirectionSurfaces} surfaces
  * @property {DirectionAccents} accents
  * @property {DirectionSyntax} syntax

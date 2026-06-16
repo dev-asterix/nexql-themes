@@ -7,6 +7,17 @@
 export function buildPreviewTokenColors(direction) {
   const s = direction.syntax;
 
+  const decorator = s.decorator ?? s.type;
+  const templateLiteral = s.templateLiteral ?? s.string;
+  const escape = s.escape ?? s.number;
+  const cssSelector = s.cssSelector ?? s.type;
+  const regex = s.regex ?? s.string;
+  const yamlKey = s.yamlKey ?? s.type;
+  const preprocessor = s.preprocessor ?? s.keyword;
+  const docTag = s.docTag ?? s.comment;
+  const lifetime = s.lifetime ?? s.number;
+  const selfKeyword = s.selfKeyword ?? s.keyword;
+
   return [
     {
       name: "Comments",
@@ -82,6 +93,66 @@ export function buildPreviewTokenColors(direction) {
       settings: { foreground: s.type },
     },
     {
+      name: "Decorators",
+      scope: ["meta.decorator", "punctuation.decorator"],
+      settings: { foreground: decorator },
+    },
+    {
+      name: "Template literals",
+      scope: ["string.template", "punctuation.definition.template-expression"],
+      settings: { foreground: templateLiteral },
+    },
+    {
+      name: "Escape characters",
+      scope: ["constant.character.escape"],
+      settings: { foreground: escape },
+    },
+    {
+      name: "CSS selectors",
+      scope: ["entity.name.tag.css", "entity.other.attribute-name.class.css", "entity.other.attribute-name.id.css"],
+      settings: { foreground: cssSelector },
+    },
+    {
+      name: "Regex",
+      scope: ["string.regexp", "keyword.control.anchor.regexp", "constant.other.character-class.regexp"],
+      settings: { foreground: regex },
+    },
+    {
+      name: "YAML keys",
+      scope: ["entity.name.tag.yaml"],
+      settings: { foreground: yamlKey },
+    },
+    {
+      name: "Preprocessor directives",
+      scope: ["meta.preprocessor", "keyword.control.directive"],
+      settings: { foreground: preprocessor },
+    },
+    {
+      name: "JSDoc / TSDoc",
+      scope: ["storage.type.class.jsdoc", "variable.other.jsdoc", "entity.name.type.instance.jsdoc"],
+      settings: { foreground: docTag, fontStyle: "italic" },
+    },
+    {
+      name: "Markdown lists",
+      scope: ["markup.list", "punctuation.definition.list"],
+      settings: { foreground: s.keyword },
+    },
+    {
+      name: "Shell variables",
+      scope: ["variable.other.special.shell"],
+      settings: { foreground: s.column },
+    },
+    {
+      name: "Rust lifetimes",
+      scope: ["entity.name.lifetime.rust", "keyword.operator.borrow.rust"],
+      settings: { foreground: lifetime },
+    },
+    {
+      name: "Python self/cls",
+      scope: ["variable.language.special.self.python", "variable.language.special.self"],
+      settings: { foreground: selfKeyword },
+    },
+    {
       name: "Invalid",
       scope: ["invalid", "invalid.illegal"],
       settings: {
@@ -99,7 +170,7 @@ export function buildPreviewTokenColors(direction) {
 
 /**
  * @param {DirectionSpec} direction
- * @returns {Record<string, string>}
+ * @returns {Record<string, any>}
  */
 export function buildPreviewSemanticTokens(direction) {
   const s = direction.syntax;
@@ -117,7 +188,25 @@ export function buildPreviewSemanticTokens(direction) {
     property: s.column,
     string: s.string,
     number: s.number,
-    comment: s.comment,
+    comment: {
+      foreground: s.comment,
+      italic: true,
+    },
     operator: s.operator,
+
+    // Expansion modifiers
+    "variable.declaration": s.column,
+    "function.declaration": { foreground: s.function, fontStyle: "bold" },
+    "class.declaration": { foreground: s.type, fontStyle: "bold" },
+    "variable.static": s.column,
+    "type.defaultLibrary": s.type,
+    "function.defaultLibrary": s.function,
+    "variable.defaultLibrary": s.column,
+    "*.deprecated": { fontStyle: "strikethrough" },
+    "*.modification": s.column,
+    label: s.keyword,
+    typeParameter: s.type,
+    regexp: s.string,
+    event: s.function,
   };
 }

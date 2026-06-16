@@ -18,7 +18,7 @@ function buildThemeJson(direction) {
   return {
     $schema: "vscode://schemas/color-theme",
     name: direction.label,
-    type: "dark",
+    type: direction.type,
     semanticHighlighting: true,
     colors: buildPreviewWorkbench(direction),
     tokenColors: buildPreviewTokenColors(direction),
@@ -60,7 +60,7 @@ async function main() {
   packageJson.contributes.themes = [
     ...DIRECTIONS.map((direction) => ({
       label: direction.label,
-      uiTheme: "vs-dark",
+      uiTheme: direction.uiTheme,
       path: `./themes/${direction.filename}`,
     })),
     ...STATIC_THEMES.map((theme) => ({
