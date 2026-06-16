@@ -2,7 +2,7 @@
 import { cpSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { STATIC_THEMES } from "../src/static-themes.mjs";
+import { DIRECTIONS } from "../src/directions/index.mjs";
 import { parseThemeSummary } from "../src/site/parse-theme-summary.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -16,7 +16,7 @@ mkdirSync(ASSETS_OUT, { recursive: true });
 // Remove legacy copied themes from site/ (no longer used).
 rmSync(SITE_THEMES_DIR, { recursive: true, force: true });
 
-const manifest = STATIC_THEMES.map((spec) => ({
+const manifest = DIRECTIONS.map((spec) => ({
   label: spec.label,
   filename: spec.filename,
   uiTheme: spec.uiTheme,
@@ -24,7 +24,7 @@ const manifest = STATIC_THEMES.map((spec) => ({
 
 writeFileSync(join(THEMES_DIR, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 
-for (const spec of STATIC_THEMES) {
+for (const spec of DIRECTIONS) {
   const themeJson = JSON.parse(readFileSync(join(THEMES_DIR, spec.filename), "utf8"));
   parseThemeSummary(themeJson, spec);
 }

@@ -9,6 +9,18 @@ import { sortColors, withAlpha } from "./utils.mjs";
 export function buildPreviewWorkbench(direction) {
   const { surfaces: s, accents: a } = direction;
   const brackets = direction.bracketColors ?? [];
+  const isHc = direction.type === "hc";
+
+  /**
+   * Helper to return transparent color for standard themes, or opaque fallback for HC.
+   * @param {string} hex
+   * @param {number} alpha
+   * @param {string} opaqueFallback
+   */
+  const alphaColor = (hex, alpha, opaqueFallback) => {
+    if (isHc) return opaqueFallback;
+    return withAlpha(hex, alpha);
+  };
 
   /** @type {Record<string, string>} */
   const colors = {
@@ -51,18 +63,18 @@ export function buildPreviewWorkbench(direction) {
     "list.hoverForeground": s.fg0,
     "list.focusBackground": a.listActive,
     "list.focusForeground": a.listActiveFg,
-    "list.focusOutline": withAlpha(a.focus, 0.5),
-    "list.focusHighlightForeground": withAlpha(a.focus, 0.75),
+    "list.focusOutline": alphaColor(a.focus, 0.5, a.focus),
+    "list.focusHighlightForeground": alphaColor(a.focus, 0.75, a.focus),
     "list.highlightForeground": a.focus,
     "list.errorForeground": a.error,
     "list.warningForeground": a.warning,
-    "list.filterMatchBackground": withAlpha(a.findMatch, 0.35),
+    "list.filterMatchBackground": alphaColor(a.findMatch, 0.35, s.bg3),
     "list.deemphasizedForeground": s.fg3,
 
     "tree.indentGuidesStroke": s.border1,
     "tree.inactiveIndentGuidesStroke": s.border0,
     "tree.tableColumnsBorder": s.border1,
-    "tree.tableOddRowsBackground": withAlpha(s.bg2, 0.5),
+    "tree.tableOddRowsBackground": alphaColor(s.bg2, 0.5, s.bg2),
 
     "editor.background": s.bg0,
     "editor.foreground": s.fg1,
@@ -70,19 +82,19 @@ export function buildPreviewWorkbench(direction) {
     "editorLineNumber.activeForeground": a.cursor,
     "editorCursor.foreground": a.cursor,
     "editor.selectionBackground": a.selection,
-    "editor.inactiveSelectionBackground": withAlpha(s.bg3, 0.8),
-    "editor.selectionHighlightBackground": withAlpha(a.focus, 0.2),
-    "editor.wordHighlightBackground": withAlpha(a.focus, 0.15),
-    "editor.wordHighlightStrongBackground": withAlpha(a.focus, 0.25),
-    "editor.findMatchBackground": withAlpha(a.findMatch, 0.4),
-    "editor.findMatchHighlightBackground": withAlpha(a.focus, 0.2),
-    "editor.lineHighlightBackground": withAlpha(s.bg1, 0.6),
+    "editor.inactiveSelectionBackground": alphaColor(s.bg3, 0.8, s.bg3),
+    "editor.selectionHighlightBackground": alphaColor(a.focus, 0.2, s.bg3),
+    "editor.wordHighlightBackground": alphaColor(a.focus, 0.15, s.bg3),
+    "editor.wordHighlightStrongBackground": alphaColor(a.focus, 0.25, s.bg3),
+    "editor.findMatchBackground": alphaColor(a.findMatch, 0.4, s.bg3),
+    "editor.findMatchHighlightBackground": alphaColor(a.focus, 0.2, s.bg3),
+    "editor.lineHighlightBackground": alphaColor(s.bg1, 0.6, s.bg1),
     "editor.lineHighlightBorder": s.border0,
-    "editorWhitespace.foreground": withAlpha(s.fg3, 0.35),
+    "editorWhitespace.foreground": alphaColor(s.fg3, 0.35, s.fg3),
     "editorIndentGuide.background1": s.border0,
-    "editorIndentGuide.activeBackground1": withAlpha(a.focus, 0.45),
+    "editorIndentGuide.activeBackground1": alphaColor(a.focus, 0.45, a.focus),
     "editorRuler.foreground": s.border0,
-    "editorBracketMatch.background": withAlpha(a.focus, 0.12),
+    "editorBracketMatch.background": alphaColor(a.focus, 0.12, s.bg3),
     "editorBracketMatch.border": a.focus,
     "editorGutter.background": s.bg0,
     "editorGutter.modifiedBackground": a.modified,
@@ -91,9 +103,9 @@ export function buildPreviewWorkbench(direction) {
     "editorError.foreground": a.error,
     "editorWarning.foreground": a.warning,
     "editorInfo.foreground": a.focus,
-    "editorGhostText.foreground": withAlpha(s.fg3, 0.65),
+    "editorGhostText.foreground": alphaColor(s.fg3, 0.65, s.fg3),
     "editorInlayHint.foreground": s.fg3,
-    "editorInlayHint.background": withAlpha(s.bg2, 0.9),
+    "editorInlayHint.background": alphaColor(s.bg2, 0.9, s.bg2),
     "editorSuggestWidget.background": s.bg2,
     "editorSuggestWidget.border": s.border1,
     "editorSuggestWidget.foreground": s.fg1,
@@ -132,7 +144,7 @@ export function buildPreviewWorkbench(direction) {
     "statusBar.debuggingForeground": s.bg0,
     "statusBar.noFolderBackground": s.bg2,
     "statusBar.noFolderForeground": s.fg1,
-    "statusBarItem.hoverBackground": withAlpha(a.focus, 0.2),
+    "statusBarItem.hoverBackground": alphaColor(a.focus, 0.2, s.bg3),
     "statusBarItem.remoteBackground": a.focus,
     "statusBarItem.remoteForeground": s.bg0,
 
@@ -163,22 +175,22 @@ export function buildPreviewWorkbench(direction) {
     "input.border": s.border1,
     "input.placeholderForeground": s.fg3,
     "inputOption.activeBorder": a.focus,
-    "inputValidation.errorBackground": withAlpha(a.error, 0.15),
+    "inputValidation.errorBackground": alphaColor(a.error, 0.15, s.bg2),
     "inputValidation.errorBorder": a.error,
-    "inputValidation.warningBackground": withAlpha(a.warning, 0.15),
+    "inputValidation.warningBackground": alphaColor(a.warning, 0.15, s.bg2),
     "inputValidation.warningBorder": a.warning,
 
     "button.background": a.focus,
     "button.foreground": s.bg0,
-    "button.hoverBackground": withAlpha(a.focus, 0.85),
+    "button.hoverBackground": alphaColor(a.focus, 0.85, a.focus),
     "button.secondaryBackground": s.bg3,
     "button.secondaryForeground": s.fg1,
     "extensionButton.background": a.focus,
     "extensionButton.foreground": s.bg0,
-    "extensionButton.hoverBackground": withAlpha(a.focus, 0.85),
+    "extensionButton.hoverBackground": alphaColor(a.focus, 0.85, a.focus),
     "extensionButton.prominentBackground": a.focus,
     "extensionButton.prominentForeground": s.bg0,
-    "extensionButton.prominentHoverBackground": withAlpha(a.focus, 0.85),
+    "extensionButton.prominentHoverBackground": alphaColor(a.focus, 0.85, a.focus),
     "dropdown.background": s.bg2,
     "dropdown.foreground": s.fg0,
     "dropdown.border": s.border1,
@@ -187,23 +199,23 @@ export function buildPreviewWorkbench(direction) {
     "badge.foreground": s.fg1,
     "progressBar.background": a.focus,
 
-    "scrollbarSlider.background": withAlpha(s.bg3, 0.7),
-    "scrollbarSlider.hoverBackground": withAlpha(s.border1, 0.8),
-    "scrollbarSlider.activeBackground": withAlpha(a.focus, 0.6),
+    "scrollbarSlider.background": alphaColor(s.bg3, 0.7, s.bg3),
+    "scrollbarSlider.hoverBackground": alphaColor(s.border1, 0.8, s.border1),
+    "scrollbarSlider.activeBackground": alphaColor(a.focus, 0.6, a.focus),
 
     "peekView.border": a.focus,
     "peekViewEditor.background": s.bg1,
     "peekViewResult.background": s.bg0,
     "peekViewTitle.background": s.bg2,
 
-    "diffEditor.insertedTextBackground": withAlpha(a.added, 0.15),
-    "diffEditor.removedTextBackground": withAlpha(a.deleted, 0.15),
+    "diffEditor.insertedTextBackground": alphaColor(a.added, 0.15, s.bg1),
+    "diffEditor.removedTextBackground": alphaColor(a.deleted, 0.15, s.bg1),
 
     "quickInput.background": s.bg2,
     "quickInput.foreground": s.fg1,
     "quickInputList.focusBackground": a.listActive,
     "quickInputList.focusForeground": a.listActiveFg,
-    "quickInputList.focusIconForeground": withAlpha(a.focus, 0.75),
+    "quickInputList.focusIconForeground": alphaColor(a.focus, 0.75, a.focus),
 
     "menu.background": s.bg2,
     "menu.foreground": s.fg1,
@@ -223,7 +235,120 @@ export function buildPreviewWorkbench(direction) {
     "keybindingLabel.background": s.bg3,
     "keybindingLabel.foreground": s.fg0,
     "keybindingLabel.border": s.border1,
+
+    // Chat and AI
+    "chat.background": s.bg1,
+    "chat.requestBackground": s.bg0,
+    "chat.requestBorder": s.border0,
+    "chat.slashCommandBackground": alphaColor(a.focus, 0.2, s.bg3),
+    "chat.slashCommandForeground": a.focus,
+    "chat.avatarBackground": s.bg2,
+    "chat.avatarForeground": s.fg1,
+    "inlineChat.background": s.bg2,
+    "inlineChat.border": s.border1,
+    "inlineChat.shadow": alphaColor(s.bg0, 0.5, s.border0),
+    "inlineChatInput.background": s.bg0,
+    "inlineChatInput.border": s.border0,
+    "inlineChatInput.focusBorder": a.focus,
+    "inlineChatInput.placeholderForeground": s.fg3,
+    "inlineChatDiff.inserted": alphaColor(a.added, 0.15, s.bg1),
+    "inlineChatDiff.removed": alphaColor(a.deleted, 0.15, s.bg1),
+
+    // SCM Graph
+    "scmGraph.foreground1": a.focus,
+    "scmGraph.foreground2": a.warning,
+    "scmGraph.foreground3": a.error,
+    "scmGraph.foreground4": a.success,
+    "scmGraph.foreground5": a.modified,
+    "scmGraph.historyItemBaseRefColor": a.focus,
+    "scmGraph.historyItemHoverAdditionsForeground": a.added,
+    "scmGraph.historyItemHoverDeletionsForeground": a.deleted,
+    "scmGraph.historyItemHoverLabelForeground": s.fg0,
+    "scmGraph.historyItemRefColor": a.focus,
+    "scmGraph.historyItemRemoteRefColor": a.modified,
+
+    // Radio & Gauge
+    "radio.activeBackground": alphaColor(a.focus, 0.2, s.bg3),
+    "radio.activeBorder": a.focus,
+    "radio.activeForeground": a.focus,
+    "radio.inactiveBackground": s.bg2,
+    "radio.inactiveBorder": s.border1,
+    "radio.inactiveForeground": s.fg2,
+    "radio.inactiveHoverBackground": s.bg3,
+    "gauge.errorBackground": alphaColor(a.error, 0.2, s.bg2),
+    "gauge.errorForeground": a.error,
+    "gauge.infoBackground": alphaColor(a.focus, 0.2, s.bg2),
+    "gauge.infoForeground": a.focus,
+    "gauge.warningBackground": alphaColor(a.warning, 0.2, s.bg2),
+    "gauge.warningForeground": a.warning,
+
+    // CommandCenter
+    "commandCenter.background": s.bg2,
+    "commandCenter.foreground": s.fg2,
+    "commandCenter.border": s.border0,
+    "commandCenter.activeBackground": s.bg3,
+    "commandCenter.activeForeground": s.fg0,
+    "commandCenter.activeBorder": a.focus,
+    "commandCenter.debuggingBackground": a.warning,
+    "commandCenter.inactiveForeground": s.fg3,
+    "commandCenter.inactiveBorder": s.border0,
+
+    // MultiDiff
+    "multiDiffEditor.background": s.bg0,
+    "multiDiffEditor.border": s.border0,
+    "multiDiffEditor.headerBackground": s.bg2,
+
+    // ProfileBadge
+    "profileBadge.background": s.bg3,
+    "profileBadge.foreground": s.fg1,
+
+    // Checkbox
+    "checkbox.background": s.bg2,
+    "checkbox.border": s.border1,
+    "checkbox.foreground": s.fg0,
+    "checkbox.selectBackground": a.focus,
+    "checkbox.selectBorder": a.focus,
+
+    // Symbol Icons
+    "symbolIcon.arrayForeground": direction.syntax.column,
+    "symbolIcon.booleanForeground": direction.syntax.number,
+    "symbolIcon.classForeground": direction.syntax.type,
+    "symbolIcon.colorForeground": s.fg2,
+    "symbolIcon.constantForeground": direction.syntax.constant,
+    "symbolIcon.constructorForeground": direction.syntax.function,
+    "symbolIcon.enumeratorForeground": direction.syntax.type,
+    "symbolIcon.enumeratorMemberForeground": direction.syntax.constant,
+    "symbolIcon.eventForeground": direction.syntax.function,
+    "symbolIcon.fieldForeground": direction.syntax.column,
+    "symbolIcon.fileForeground": s.fg1,
+    "symbolIcon.folderForeground": s.fg2,
+    "symbolIcon.functionForeground": direction.syntax.function,
+    "symbolIcon.interfaceForeground": direction.syntax.type,
+    "symbolIcon.keyForeground": direction.syntax.type,
+    "symbolIcon.keywordForeground": direction.syntax.keyword,
+    "symbolIcon.methodForeground": direction.syntax.function,
+    "symbolIcon.moduleForeground": direction.syntax.keyword,
+    "symbolIcon.namespaceForeground": direction.syntax.keyword,
+    "symbolIcon.numberForeground": direction.syntax.number,
+    "symbolIcon.objectForeground": direction.syntax.column,
+    "symbolIcon.operatorForeground": direction.syntax.operator,
+    "symbolIcon.packageForeground": direction.syntax.keyword,
+    "symbolIcon.propertyForeground": direction.syntax.column,
+    "symbolIcon.referenceForeground": direction.syntax.alias,
+    "symbolIcon.snippetForeground": direction.syntax.alias,
+    "symbolIcon.stringForeground": direction.syntax.string,
+    "symbolIcon.structForeground": direction.syntax.type,
+    "symbolIcon.textForeground": s.fg1,
+    "symbolIcon.typeParameterForeground": direction.syntax.type,
+    "symbolIcon.unitForeground": direction.syntax.number,
+    "symbolIcon.variableForeground": direction.syntax.column,
   };
+
+  // High-contrast specific keys
+  if (isHc) {
+    colors.contrastActiveBorder = a.focus;
+    colors.contrastBorder = s.border0;
+  }
 
   for (let i = 0; i < 6; i += 1) {
     if (brackets[i]) {
