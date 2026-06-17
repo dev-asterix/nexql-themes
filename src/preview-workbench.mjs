@@ -342,6 +342,214 @@ export function buildPreviewWorkbench(direction) {
     "symbolIcon.typeParameterForeground": direction.syntax.type,
     "symbolIcon.unitForeground": direction.syntax.number,
     "symbolIcon.variableForeground": direction.syntax.column,
+
+    // Notifications
+    "notificationCenter.border": s.border1,
+    "notificationCenterHeader.background": s.bg2,
+    "notificationCenterHeader.foreground": s.fg0,
+    "notifications.background": s.bg2,
+    "notifications.foreground": s.fg1,
+    "notifications.border": s.border0,
+    "notificationToast.border": s.border1,
+    "notificationLink.foreground": a.focus,
+    "notificationsErrorIcon.foreground": a.error,
+    "notificationsWarningIcon.foreground": a.warning,
+    "notificationsInfoIcon.foreground": a.focus,
+
+    // Minimap
+    "minimap.background": s.bg0,
+    "minimap.findMatchHighlight": alphaColor(a.findMatch, 0.5, a.findMatch),
+    "minimap.selectionHighlight": alphaColor(a.focus, 0.5, a.focus),
+    "minimap.errorHighlight": a.error,
+    "minimap.warningHighlight": a.warning,
+    "minimapSlider.background": alphaColor(s.bg3, 0.5, s.bg3),
+    "minimapSlider.hoverBackground": alphaColor(s.border1, 0.6, s.border1),
+    "minimapSlider.activeBackground": alphaColor(a.focus, 0.5, a.focus),
+    "minimapGutter.addedBackground": a.added,
+    "minimapGutter.modifiedBackground": a.modified,
+    "minimapGutter.deletedBackground": a.deleted,
+
+    // Overview ruler
+    "editorOverviewRuler.border": s.border0,
+    "editorOverviewRuler.findMatchForeground": alphaColor(a.findMatch, 0.5, a.findMatch),
+    "editorOverviewRuler.selectionHighlightForeground": alphaColor(a.focus, 0.4, a.focus),
+    "editorOverviewRuler.wordHighlightForeground": alphaColor(a.focus, 0.4, a.focus),
+    "editorOverviewRuler.bracketMatchForeground": a.focus,
+    "editorOverviewRuler.modifiedForeground": a.modified,
+    "editorOverviewRuler.addedForeground": a.added,
+    "editorOverviewRuler.deletedForeground": a.deleted,
+    "editorOverviewRuler.errorForeground": a.error,
+    "editorOverviewRuler.warningForeground": a.warning,
+    "editorOverviewRuler.infoForeground": a.focus,
+
+    // Git decorations (full set)
+    "gitDecoration.untrackedResourceForeground": a.added,
+    "gitDecoration.ignoredResourceForeground": s.fg3,
+    "gitDecoration.conflictingResourceForeground": a.error,
+    "gitDecoration.stageModifiedResourceForeground": a.modified,
+    "gitDecoration.stageDeletedResourceForeground": a.deleted,
+    "gitDecoration.submoduleResourceForeground": a.focus,
+    "gitDecoration.renamedResourceForeground": a.success,
+
+    // Merge conflicts
+    "merge.currentHeaderBackground": alphaColor(a.success, 0.4, s.bg2),
+    "merge.currentContentBackground": alphaColor(a.success, 0.2, s.bg1),
+    "merge.incomingHeaderBackground": alphaColor(a.focus, 0.4, s.bg2),
+    "merge.incomingContentBackground": alphaColor(a.focus, 0.2, s.bg1),
+    "merge.commonHeaderBackground": alphaColor(s.bg3, 0.5, s.bg2),
+    "merge.commonContentBackground": alphaColor(s.bg3, 0.35, s.bg1),
+    "merge.border": s.border1,
+    "editorOverviewRuler.currentContentForeground": a.success,
+    "editorOverviewRuler.incomingContentForeground": a.focus,
+    "editorOverviewRuler.commonContentForeground": s.fg3,
+
+    // Debug
+    "debugToolBar.background": s.bg2,
+    "debugToolBar.border": s.border1,
+    "debugIcon.breakpointForeground": a.error,
+    "debugIcon.breakpointDisabledForeground": s.fg3,
+    "debugIcon.breakpointUnverifiedForeground": s.fg2,
+    "debugIcon.startForeground": a.success,
+    "debugIcon.pauseForeground": a.focus,
+    "debugIcon.stopForeground": a.error,
+    "debugIcon.disconnectForeground": a.error,
+    "debugIcon.continueForeground": a.success,
+    "debugIcon.stepOverForeground": a.focus,
+    "debugIcon.stepIntoForeground": a.focus,
+    "debugIcon.stepOutForeground": a.focus,
+    "debugIcon.stepBackForeground": a.focus,
+    "debugIcon.restartForeground": a.success,
+    "editor.stackFrameHighlightBackground": alphaColor(a.warning, 0.2, s.bg1),
+    "editor.focusedStackFrameHighlightBackground": alphaColor(a.success, 0.2, s.bg1),
+    "debugExceptionWidget.background": s.bg2,
+    "debugExceptionWidget.border": a.error,
+    "debugConsole.infoForeground": s.fg1,
+    "debugConsole.warningForeground": a.warning,
+    "debugConsole.errorForeground": a.error,
+    "debugConsole.sourceForeground": s.fg2,
+    "debugConsoleInputIcon.foreground": a.focus,
+    "debugTokenExpression.name": direction.syntax.column,
+    "debugTokenExpression.value": s.fg2,
+    "debugTokenExpression.string": direction.syntax.string,
+    "debugTokenExpression.boolean": direction.syntax.number,
+    "debugTokenExpression.number": direction.syntax.number,
+    "debugTokenExpression.error": a.error,
+
+    // Testing
+    "testing.iconPassed": a.success,
+    "testing.iconFailed": a.error,
+    "testing.iconErrored": a.error,
+    "testing.iconSkipped": s.fg3,
+    "testing.iconQueued": a.warning,
+    "testing.iconUnset": s.fg3,
+    "testing.runAction": a.success,
+    "testing.message.error.decorationForeground": a.error,
+    "testing.message.info.decorationForeground": a.focus,
+
+    // Settings editor
+    "settings.headerForeground": s.fg0,
+    "settings.headerBorder": s.border0,
+    "settings.modifiedItemIndicator": a.modified,
+    "settings.dropdownBackground": s.bg2,
+    "settings.dropdownForeground": s.fg0,
+    "settings.dropdownBorder": s.border1,
+    "settings.checkboxBackground": s.bg2,
+    "settings.checkboxForeground": s.fg0,
+    "settings.checkboxBorder": s.border1,
+    "settings.textInputBackground": s.bg2,
+    "settings.textInputForeground": s.fg0,
+    "settings.textInputBorder": s.border1,
+    "settings.numberInputBackground": s.bg2,
+    "settings.numberInputForeground": direction.syntax.number,
+    "settings.numberInputBorder": s.border1,
+    "settings.focusedRowBackground": alphaColor(s.bg3, 0.5, s.bg3),
+    "settings.rowHoverBackground": alphaColor(s.bg2, 0.5, s.bg2),
+
+    // Notebook
+    "notebook.editorBackground": s.bg0,
+    "notebook.cellBorderColor": s.border0,
+    "notebook.cellEditorBackground": s.bg1,
+    "notebook.focusedCellBorder": a.focus,
+    "notebook.focusedEditorBorder": a.focus,
+    "notebook.cellHoverBackground": alphaColor(s.bg1, 0.5, s.bg1),
+    "notebook.focusedCellBackground": alphaColor(s.bg3, 0.4, s.bg1),
+    "notebook.selectedCellBackground": alphaColor(s.bg3, 0.3, s.bg1),
+    "notebook.cellStatusBarItemHoverBackground": s.bg3,
+    "notebookStatusSuccessIcon.foreground": a.success,
+    "notebookStatusErrorIcon.foreground": a.error,
+    "notebookStatusRunningIcon.foreground": a.focus,
+
+    // Sticky scroll
+    "editorStickyScroll.background": s.bg1,
+    "editorStickyScroll.border": s.border0,
+    "editorStickyScrollHover.background": s.bg2,
+
+    // Toolbar
+    "toolbar.hoverBackground": alphaColor(s.bg3, 0.5, s.bg3),
+    "toolbar.activeBackground": s.bg3,
+
+    // Menubar / menu
+    "menubar.selectionForeground": s.fg0,
+    "menubar.selectionBackground": alphaColor(a.focus, 0.2, s.bg3),
+    "menubar.selectionBorder": a.focus,
+    "menu.border": s.border1,
+    "menu.separatorBackground": s.border1,
+
+    // Panel sections
+    "panelSection.border": s.border0,
+    "panelSectionHeader.background": s.bg2,
+    "panelSectionHeader.foreground": s.fg1,
+    "panelInput.border": s.border1,
+
+    // Shadows
+    "widget.shadow": alphaColor(s.bg0, 0.5, s.border0),
+    "scrollbar.shadow": alphaColor(s.bg0, 0.5, s.border0),
+
+    // Editor extras
+    "editorCodeLens.foreground": s.fg3,
+    "editorLink.activeForeground": a.focus,
+    "editor.foldBackground": alphaColor(a.focus, 0.1, s.bg1),
+    "editorLightBulb.foreground": a.warning,
+    "editorLightBulbAutoFix.foreground": a.focus,
+    "editor.rangeHighlightBackground": alphaColor(a.focus, 0.12, s.bg3),
+    "editor.symbolHighlightBackground": alphaColor(a.findMatch, 0.2, s.bg3),
+    "editorHint.foreground": s.fg2,
+    "editorBracketPairGuide.background1": s.border0,
+    "editorBracketPairGuide.activeBackground1": a.focus,
+    "editor.snippetTabstopHighlightBackground": alphaColor(a.focus, 0.2, s.bg3),
+    "editor.snippetFinalTabstopHighlightBorder": a.focus,
+
+    // Banner
+    "banner.background": s.bg2,
+    "banner.foreground": s.fg1,
+    "banner.iconForeground": a.focus,
+
+    // Charts
+    "charts.foreground": s.fg1,
+    "charts.lines": s.border1,
+    "charts.red": a.error,
+    "charts.blue": a.focus,
+    "charts.yellow": a.warning,
+    "charts.orange": a.warning,
+    "charts.green": a.success,
+    "charts.purple": a.modified,
+
+    // List extras
+    "list.dropBackground": alphaColor(a.focus, 0.2, s.bg3),
+    "listFilterWidget.background": s.bg2,
+    "listFilterWidget.outline": a.focus,
+    "listFilterWidget.noMatchesOutline": a.error,
+
+    // Welcome / walkthrough
+    "welcomePage.background": s.bg0,
+    "welcomePage.tileBackground": s.bg1,
+    "welcomePage.tileHoverBackground": s.bg2,
+    "welcomePage.progress.background": s.bg3,
+    "welcomePage.progress.foreground": a.focus,
+    "walkThrough.embeddedEditorBackground": s.bg1,
+
+    // Ports
+    "ports.iconRunningProcessForeground": a.success,
   };
 
   // High-contrast specific keys
