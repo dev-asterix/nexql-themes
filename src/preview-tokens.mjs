@@ -153,6 +153,147 @@ export function buildPreviewTokenColors(direction) {
       settings: { foreground: selfKeyword },
     },
     {
+      name: "Control keywords",
+      scope: [
+        "keyword.control",
+        "keyword.control.flow",
+        "keyword.control.import",
+        "keyword.control.conditional",
+        "keyword.control.loop",
+      ],
+      settings: { foreground: s.keyword },
+    },
+    {
+      name: "Storage modifiers",
+      scope: ["storage.modifier", "storage.type.modifier"],
+      settings: { foreground: s.keyword },
+    },
+    {
+      name: "Language variables (this/super)",
+      scope: ["variable.language", "variable.language.this", "variable.language.super"],
+      settings: { foreground: selfKeyword, fontStyle: "italic" },
+    },
+    {
+      name: "Namespaces",
+      scope: ["entity.name.namespace", "entity.name.scope-resolution"],
+      settings: { foreground: s.type },
+    },
+    {
+      name: "Inherited class",
+      scope: ["entity.other.inherited-class"],
+      settings: { foreground: s.type, fontStyle: "italic" },
+    },
+    {
+      name: "Object properties",
+      scope: ["variable.other.property", "variable.other.object.property", "meta.object-literal.key"],
+      settings: { foreground: s.column },
+    },
+    {
+      name: "Built-in support",
+      scope: ["support.class", "support.other", "support.constant.property-value"],
+      settings: { foreground: s.type },
+    },
+    {
+      name: "Annotations",
+      scope: ["meta.annotation", "storage.type.annotation", "punctuation.definition.annotation"],
+      settings: { foreground: decorator },
+    },
+    {
+      name: "Accessor / separator punctuation",
+      scope: ["punctuation.accessor", "punctuation.separator", "meta.brace"],
+      settings: { foreground: s.operator },
+    },
+    {
+      name: "String interpolation",
+      scope: ["meta.template.expression", "punctuation.section.embedded"],
+      settings: { foreground: s.operator },
+    },
+    {
+      name: "HTML/XML tags",
+      scope: ["entity.name.tag", "entity.name.tag.html", "entity.name.tag.xml"],
+      settings: { foreground: s.keyword },
+    },
+    {
+      name: "HTML/XML attributes",
+      scope: ["entity.other.attribute-name", "entity.other.attribute-name.html"],
+      settings: { foreground: s.alias },
+    },
+    {
+      name: "Tag punctuation",
+      scope: ["punctuation.definition.tag", "punctuation.separator.key-value.html"],
+      settings: { foreground: s.operator },
+    },
+    {
+      name: "JSX/TSX components",
+      scope: ["support.class.component", "entity.name.tag.jsx", "entity.name.tag.tsx"],
+      settings: { foreground: s.type },
+    },
+    {
+      name: "CSS properties",
+      scope: ["support.type.property-name.css", "support.type.vendored.property-name.css"],
+      settings: { foreground: s.column },
+    },
+    {
+      name: "CSS units and colors",
+      scope: ["keyword.other.unit", "constant.numeric.css", "constant.other.color"],
+      settings: { foreground: s.number },
+    },
+    {
+      name: "Markdown headings",
+      scope: ["markup.heading", "entity.name.section.markdown", "punctuation.definition.heading.markdown"],
+      settings: { foreground: s.keyword, fontStyle: "bold" },
+    },
+    {
+      name: "Markdown bold",
+      scope: ["markup.bold", "punctuation.definition.bold"],
+      settings: { foreground: s.number, fontStyle: "bold" },
+    },
+    {
+      name: "Markdown italic",
+      scope: ["markup.italic", "punctuation.definition.italic"],
+      settings: { foreground: s.type, fontStyle: "italic" },
+    },
+    {
+      name: "Markdown quote",
+      scope: ["markup.quote"],
+      settings: { foreground: s.comment, fontStyle: "italic" },
+    },
+    {
+      name: "Markdown inline / fenced code",
+      scope: ["markup.inline.raw", "markup.fenced_code", "markup.raw"],
+      settings: { foreground: s.string },
+    },
+    {
+      name: "Markdown links",
+      scope: ["markup.underline.link", "string.other.link", "constant.other.reference.link.markdown"],
+      settings: { foreground: s.function },
+    },
+    {
+      name: "Markdown link text",
+      scope: ["string.other.link.title.markdown", "string.other.link.description.markdown"],
+      settings: { foreground: s.alias },
+    },
+    {
+      name: "Markdown separators",
+      scope: ["meta.separator.markdown", "punctuation.definition.constant.markdown"],
+      settings: { foreground: s.comment },
+    },
+    {
+      name: "Diff inserted",
+      scope: ["markup.inserted", "meta.diff.header.to-file"],
+      settings: { foreground: direction.accents.added },
+    },
+    {
+      name: "Diff deleted",
+      scope: ["markup.deleted", "meta.diff.header.from-file"],
+      settings: { foreground: direction.accents.deleted },
+    },
+    {
+      name: "Diff changed",
+      scope: ["markup.changed"],
+      settings: { foreground: direction.accents.modified },
+    },
+    {
       name: "Invalid",
       scope: ["invalid", "invalid.illegal"],
       settings: {
@@ -174,6 +315,8 @@ export function buildPreviewTokenColors(direction) {
  */
 export function buildPreviewSemanticTokens(direction) {
   const s = direction.syntax;
+  const decorator = s.decorator ?? s.type;
+  const selfKeyword = s.selfKeyword ?? s.keyword;
   return {
     keyword: s.keyword,
     function: s.function,
@@ -204,9 +347,24 @@ export function buildPreviewSemanticTokens(direction) {
     "variable.defaultLibrary": s.column,
     "*.deprecated": { fontStyle: "strikethrough" },
     "*.modification": s.column,
+    "*.readonly": s.constant,
+    "*.async": { foreground: s.function, fontStyle: "italic" },
+    "*.abstract": { foreground: s.type, fontStyle: "italic" },
     label: s.keyword,
     typeParameter: s.type,
     regexp: s.string,
     event: s.function,
+
+    // Additional standard semantic token types
+    namespace: s.type,
+    enumMember: s.constant,
+    decorator: decorator,
+    macro: s.keyword,
+    selfParameter: selfKeyword,
+    builtinType: s.type,
+    typeAlias: s.type,
+    "variable.builtin": selfKeyword,
+    "function.builtin": s.function,
+    "method.declaration": { foreground: s.function, fontStyle: "bold" },
   };
 }
